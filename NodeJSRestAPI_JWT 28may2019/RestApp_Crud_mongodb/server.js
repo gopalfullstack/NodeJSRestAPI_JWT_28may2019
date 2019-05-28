@@ -1,0 +1,10 @@
+let app = require('./config/imports').express();
+let bodyParser = require('./config/imports').bodyParser;
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:false}));
+app.use(require('./config/imports').cors());
+app.use("/login", require("./login/login"));
+app.use(require("./config/auth"));
+app.use("/fetch", require("./fetch/fetch"));
+app.listen(3200);
+console.log('server listen port 3200');
